@@ -14,10 +14,12 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
+    "big-number": "^1.0.0",
+    "bignumber.js": "^7.2.1",
     "hoek": "4.x.x",
-    "topo": "2.x.x",
     "isemail": "2.x.x",
-    "moment": "2.x.x"
+    "moment": "2.x.x",
+    "topo": "2.x.x"
   },
   "devDependencies": {
     "code": "3.x.x",
