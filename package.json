@@ -1,9 +1,9 @@
 {
-  "name": "joi",
+  "name": "joi-bignumber",
   "description": "Object schema validation",
   "version": "8.4.2",
-  "homepage": "https://github.com/hapijs/joi",
-  "repository": "git://github.com/hapijs/joi",
+  "homepage": "https://github.com/Ubiatar/joi",
+  "repository": "git://github.com/Ubiatar/joi",
   "main": "lib/index.js",
   "keywords": [
     "hapi",
