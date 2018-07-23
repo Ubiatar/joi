@@ -1,9 +1,9 @@
 {
-  "name": "joi",
+  "name": "joi-bignumber",
   "description": "Object schema validation",
-  "version": "13.4.0",
-  "homepage": "https://github.com/hapijs/joi",
-  "repository": "git://github.com/hapijs/joi",
+  "version": "13.4.0-beta1",
+  "homepage": "https://github.com/Ubiatar/joi",
+  "repository": "git://github.com/Ubiatar/joi",
   "main": "lib/index.js",
   "keywords": [
     "hapi",
@@ -14,6 +14,7 @@
     "node": ">=8.9.0"
   },
   "dependencies": {
+    "bignumber.js": "^7.2.1",
     "hoek": "5.x.x",
     "isemail": "3.x.x",
     "topo": "3.x.x"

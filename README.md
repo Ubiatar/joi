@@ -2,12 +2,7 @@
 
 Object schema description language and validator for JavaScript objects.
 
-[![npm version](https://badge.fury.io/js/joi.svg)](http://badge.fury.io/js/joi)
-[![Build Status](https://travis-ci.org/hapijs/joi.svg?branch=master)](https://travis-ci.org/hapijs/joi)
-[![NSP Status](https://nodesecurity.io/orgs/hapijs/projects/0394bf83-b5bc-410b-878c-e8cf1b92033e/badge)](https://nodesecurity.io/orgs/hapijs/projects/0394bf83-b5bc-410b-878c-e8cf1b92033e)
-[![Known Vulnerabilities](https://snyk.io/test/github/hapijs/joi/badge.svg)](https://snyk.io/test/github/hapijs/joi)
-
-Lead Maintainer: [Nicolas Morel](https://github.com/marsup)
+We added [bignumber.js](https://github.com/MikeMcl/bignumber.js) support
 
 # Introduction
 
@@ -21,14 +16,26 @@ See the detailed [API Reference](https://github.com/hapijs/joi/blob/v13.4.0/API.
 # Example
 
 ```javascript
-const Joi = require('joi');
+var Joi = require('joi-bignumber');
 
-const schema = Joi.object().keys({
+const minGasPrice = new BigNumber("1000000000000000000")
+const maxGasPrice = new BigNumber("2000000000000000000000")
+
+var schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
     access_token: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
-    email: Joi.string().email()
+    email: Joi.string().email(),
+    answer: Joi.bool(),
+    gasPrice: Joi.bigNumber().when('answer', {
+        is: true,
+        then: Joi.bigNumber()
+            .min(minGasPrice)
+            .max(maxGasPrice)
+            .required(),
+        otherwise: Joi.bigNumber().valid(null)
+    })
 }).with('username', 'birthyear').without('password', 'access_token');
 
 // Return result.
@@ -56,6 +63,10 @@ The above schema defines the following constraints:
     * an integer between 1900 and 2013
 * `email`
     * a valid email address string
+* `answer`
+    * a boolean (true/false)
+* `gasPrice`
+    * when answer is true, gasPrice must be a bignumber between minGasPrice and maxGasPrice
 
 # Usage
 
