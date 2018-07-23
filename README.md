@@ -14,14 +14,26 @@ This is joi, joi allows you to create *blueprints* or *schemas* for JavaScript o
 # Example
 
 ```javascript
-var Joi = require('joi');
+var Joi = require('joi-bignumber');
+
+const minGasPrice = new BigNumber("1000000000000000000")
+const maxGasPrice = new BigNumber("2000000000000000000000")
 
 var schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
     access_token: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
-    email: Joi.string().email()
+    email: Joi.string().email(),
+    answer: Joi.bool(),
+    gasPrice: Joi.bigNumber().when('answer', {
+        is: true,
+        then: Joi.bigNumber()
+            .min(minGasPrice)
+            .max(maxGasPrice)
+            .required(),
+        otherwise: Joi.bigNumber().valid(null)
+    })
 }).with('username', 'birthyear').without('password', 'access_token');
 
 Joi.validate({ username: 'abc', birthyear: 1994 }, schema, function (err, value) { });  // err === null -> valid
@@ -43,6 +55,10 @@ The above schema defines the following constraints:
     * an integer between 1900 and 2013
 * `email`
     * a valid email address string
+* `answer`
+    * a boolean (true/false)
+* `gasPrice`
+    * when answer is true, gasPrice must be a bignumber between minGasPrice and maxGasPrice
 
 # Usage
 
