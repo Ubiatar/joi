@@ -1,7 +1,7 @@
 {
   "name": "joi-bignumber",
   "description": "Object schema validation",
-  "version": "13.4.0-beta1",
+  "version": "13.4.0-beta.2",
   "homepage": "https://github.com/Ubiatar/joi",
   "repository": "git://github.com/Ubiatar/joi",
   "main": "lib/index.js",
