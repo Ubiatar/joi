@@ -1,7 +1,7 @@
 {
   "name": "joi-bignumber",
   "description": "Object schema validation",
-  "version": "8.4.2",
+  "version": "13.4.0-beta1",
   "homepage": "https://github.com/Ubiatar/joi",
   "repository": "git://github.com/Ubiatar/joi",
   "main": "lib/index.js",
@@ -11,26 +11,24 @@
     "validation"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.9.0"
   },
   "dependencies": {
-    "big-number": "^1.0.0",
     "bignumber.js": "^7.2.1",
-    "hoek": "4.x.x",
-    "isemail": "2.x.x",
-    "moment": "2.x.x",
-    "topo": "2.x.x"
+    "hoek": "5.x.x",
+    "isemail": "3.x.x",
+    "topo": "3.x.x"
   },
   "devDependencies": {
-    "code": "3.x.x",
-    "lab": "10.x.x",
-    "markdown-toc": "0.12.x"
+    "code": "5.x.x",
+    "hapitoc": "1.x.x",
+    "lab": "15.x.x"
   },
   "scripts": {
     "test": "lab -t 100 -a code -L",
-    "test-debug": "node $NODE_DEBUG_OPTION ./node_modules/.bin/lab -a code",
+    "test-debug": "lab -a code",
     "test-cov-html": "lab -r html -o coverage.html -a code",
-    "toc": "node generate-readme-toc.js",
+    "toc": "hapitoc",
     "version": "npm run toc && git add API.md README.md"
   },
   "license": "BSD-3-Clause"
